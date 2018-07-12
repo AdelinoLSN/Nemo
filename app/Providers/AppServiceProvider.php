@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace nemo\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
