@@ -28,3 +28,17 @@ Route::post('/salvarPsicultura', "PsiculturaController@salvar");
 Route::get('/remover/psicultura/{id}', "PsiculturaController@remover");
 
 Route::post('/apagarPsicultura', "PsiculturaController@apagar");
+
+Route::get('/listar/tanques', "TanqueController@listar");
+
+Route::get('/cadastrar/tanque', "TanqueController@cadastrar");
+
+Route::post('/adicionarTanque', "TanqueController@adicionar");
+
+Route::get('/editar/tanque/{id}', "TanqueController@editar");
+
+Route::post('/salvarTanque', "TanqueController@salvar");
+
+Route::get('/remover/tanque/{id}', "TanqueController@remover");
+
+Route::post('/apagarTanque', "TanqueController@apagar");
