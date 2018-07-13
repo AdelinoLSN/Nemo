@@ -42,3 +42,17 @@ Route::post('/salvarTanque', "TanqueController@salvar");
 Route::get('/remover/tanque/{id}', "TanqueController@remover");
 
 Route::post('/apagarTanque', "TanqueController@apagar");
+
+Route::get('/listar/especies', "EspecieController@listar");
+
+Route::get('/adicionar/especie', "EspecieController@adicionar");
+
+Route::post('/cadastrarEspecie', "EspecieController@cadastrar");
+
+Route::post('/salvarEspecie', "EspecieController@salvar");
+
+Route::get('/editar/especie/{id}', "EspecieController@editar");
+
+Route::post('/apagarEspecie', "EspecieController@apagar");
+
+Route::get('/remover/especie/{id}', "EspecieController@remover");
