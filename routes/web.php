@@ -62,3 +62,18 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/cadastrar/qualidadeAgua', "QualidadeAguaController@cadastrar");
+
+Route::post('/adicionarQualidadeAgua', "QualidadeAguaController@adicionar");
+
+Route::get('/listar/qualidadesAgua', "QualidadeAguaController@listar");
+
+Route::get('/editar/qualidadeAgua/{id}', "QualidadeAguaController@editar");
+
+Route::post('/salvarQualidadeAgua', "QualidadeAguaController@salvar");
+
+Route::post('/apagarQualidadeAgua', "QualidadeAguaController@apagar");
+
+Route::get('/remover/qualidadeAgua/{id}', "QualidadeAguaController@remover");
+
