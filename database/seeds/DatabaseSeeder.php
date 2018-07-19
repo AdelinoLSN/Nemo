@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TanqueSeeder::class);
 
         $this->call(EspecieSeeder::class);
+        
+        $this->call(QualidadeAguaSeeder::class);
     }
 }
