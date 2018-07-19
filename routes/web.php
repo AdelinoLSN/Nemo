@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('/listar/psiculturas', "PsiculturaController@listar");
 
@@ -56,3 +56,9 @@ Route::get('/editar/especie/{id}', "EspecieController@editar");
 Route::post('/apagarEspecie', "EspecieController@apagar");
 
 Route::get('/remover/especie/{id}', "EspecieController@remover");
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
