@@ -17,10 +17,9 @@ class CreateTanquesTable extends Migration
             $table->increments('id');
             $table->float('volume')->unsigned();
             $table->string('manutencao_necessaria')->default("Não");
-            $table->integer('id_psicultura');
-            $table->timestamps();
+            $table->integer('psicultura_id');
 
-            $table->foreign('id_psicultura')->references('id')->on('psiculturas');
+            $table->foreign('psicultura_id')->references('id')->on('psiculturas');
         });
     }
 

@@ -22,11 +22,13 @@ class TanqueController extends Controller
 
   public function adicionar(Request $request){
     if(!$this->verificaPsiculturaExistente($request->id_psicultura)) {
-      $tanque = new \nemo\Tanque();
-      $tanque->volume = $request->volume;
-      $tanque->manutencao_necessaria = "Não";
-      $tanque->id_psicultura = $request->id_psicultura;
-      $tanque->save();
+
+      $psicultura = \nemo\Psicultura::find($request->id_psicultura);
+
+      $psicultura->tanques()->create([
+        'volume' => $request->volume,
+        'manutencao_necessaria' => 'Não',
+      ]);
 
       return redirect("/listar/tanques");
     }

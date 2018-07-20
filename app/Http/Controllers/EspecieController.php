@@ -19,14 +19,25 @@ class EspecieController extends Controller
     public function cadastrar(Request $request){
     	if($this->verificaNomeExistente($request->nome)) {
     		if(!$this->veriPsiculturaExistente($request->id_psicultura)) {
-    			$especiePeixe = new \nemo\EspeciePeixe();
+
+                $psicultura = \nemo\Psicultura::find($request->id_psicultura);
+
+                $psicultura->especie_peixes()->create([
+                    'nome' => $request->nome,
+                    'tempo_desenvolvimento' => $request->tempo_desenvolvimento,
+                    'quantidade_por_volume' => $request->quantidade_por_volume,
+                    'tipo_racao' => $request->tipo_racao,
+                    'temperatura_ideal_agua' => $request->temperatura_ideal_agua,
+                ]);
+
+    			/*$especiePeixe = new \nemo\EspeciePeixe();
     			$especiePeixe->nome = $request->nome;
     			$especiePeixe->id_psicultura = $request->id_psicultura;
     			$especiePeixe->tempo_desenvolvimento = $request->tempo_desenvolvimento;
     			$especiePeixe->quantidade_por_volume = $request->quantidade_por_volume;
     			$especiePeixe->tipo_racao = $request->tipo_racao;
     			$especiePeixe->temperatura_ideal_agua = $request->temperatura_ideal_agua;
-    			$especiePeixe->save();
+    			$especiePeixe->save();*/
     		return redirect("/listar/especies");
     		}
     		

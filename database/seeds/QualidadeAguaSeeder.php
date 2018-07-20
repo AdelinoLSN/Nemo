@@ -14,7 +14,11 @@ class QualidadeAguaSeeder extends Seeder
         for($i = 0;$i<5;$i++) {
         		$data = date('d-m-Y');
     			$data .= ' '.date('H:i:s');
-        		DB::table('qualidade_aguas')->insert(['ph' => mt_rand (1 ,20),'id_tanque'=>mt_rand (1 ,5),'data'=>$data]);
+        		DB::table('qualidade_aguas')->insert([
+                    'ph' => mt_rand (1 ,20),
+                    'tanque_id'=>mt_rand (1 ,5),
+                    'data'=>$data
+                ]);
         	}
     }
 }

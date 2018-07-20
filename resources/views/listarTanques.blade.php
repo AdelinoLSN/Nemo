@@ -10,7 +10,7 @@
       @foreach ($tanques as $tanque)
       <b>Cod: {{ $tanque->id }}</b> - Volume: {{ $tanque->volume}},
       Manutenção Necessária: {{$tanque->manutencao_necessaria}}<br/>
-      ID da Psicultura: {{$tanque->id_psicultura}} <br/>
+      ID da Psicultura: {{$tanque->psicultura->id}} <br/>
         <a href="/editar/tanque/{{$tanque->id}}">Editar</a>
         <a href="/remover/tanque/{{$tanque->id}}">Remover</a>
       <br/>
