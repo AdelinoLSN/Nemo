@@ -16,7 +16,6 @@ class CreatePsiculturasTable extends Migration
         Schema::create('psiculturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->timestamps();
         });
     }
 

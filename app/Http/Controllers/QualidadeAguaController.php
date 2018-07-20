@@ -14,13 +14,21 @@ class QualidadeAguaController extends Controller
   public function adicionar(Request $request){
     if(!$this->verificaTanqueExistente($request->id_tanque)) {
     	date_default_timezone_set('America/Sao_Paulo');
-      $qualidadeAgua = new \nemo\QualidadeAgua();
-      $qualidadeAgua->ph = $request->ph;
       $data = date('d-m-Y');
     	$data .= ' '.date('H:i:s');
+
+      $tanque = \nemo\Tanque::find($request->id_tanque);
+
+      $tanque->qualidade_aguas()->create([
+        'ph' => $request->ph,
+        'data' => $data,
+      ]);
+
+      /*$qualidadeAgua = new \nemo\QualidadeAgua();
+      $qualidadeAgua->ph = $request->ph;
       $qualidadeAgua->data = $data;
       $qualidadeAgua->id_tanque = $request->id_tanque;
-      $qualidadeAgua->save();
+      $qualidadeAgua->save();*/
 
       return redirect("/listar/qualidadesAgua");
     }

@@ -12,7 +12,9 @@ class PsiculturaSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 5; $i++) {
-        	DB::table('psiculturas')->insert(['nome' => str_random(10)]);
-        	}
+        	DB::table('psiculturas')->insert([
+                'nome' => str_random(10)]
+            );
+        }
     }
 }

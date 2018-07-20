@@ -17,9 +17,9 @@ class PsiculturaController extends Controller
 
     public function adicionar(Request $request){
 		if($this->verificaNomeExistente($request->nome)) {
-			$psicultura = new \nemo\Psicultura();
-			$psicultura->nome = $request->nome;
-			$psicultura->save();
+			$psicultura = \nemo\Psicultura::create([
+				'nome' => $request->nome,
+			]);
 
 			return redirect("/listar/psiculturas");
 		}

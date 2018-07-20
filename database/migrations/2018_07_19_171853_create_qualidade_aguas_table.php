@@ -14,12 +14,13 @@ class CreateQualidadeAguasTable extends Migration
     public function up()
     {
         Schema::create('qualidade_aguas', function (Blueprint $table) {
-        		$table->increments('id');
+        	$table->increments('id');
             $table->float('ph')->unsigned();
             $table->dateTime('data');
-      		$table->integer("id_tanque")->unsigned();
+      		$table->integer("tanque_id")->unsigned();
             $table->timestamps();
-            $table->foreign('id_tanque')->references('id')->on('tanques');
+            
+            $table->foreign('tanque_id')->references('id')->on('tanques');
         });
     }
 
