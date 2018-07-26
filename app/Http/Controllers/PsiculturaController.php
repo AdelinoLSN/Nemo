@@ -7,8 +7,21 @@ use Illuminate\Http\Request;
 class PsiculturaController extends Controller
 {
     public function listar(){
-		$psiculturas = \nemo\Psicultura::all();
-		return view('listarPsiculturas', ['psiculturas' => $psiculturas]);
+			$gerenciars = \nemo\Gerenciar::where('user_id','=',\Auth::user()->id)->get();
+
+			$psiculturas = array();
+
+			foreach ($gerenciars as &$gerenciar) {
+				$psicultura = \nemo\Psicultura::find($gerenciar->psicultura_id);
+				array_push($psiculturas,$psicultura);
+				//return var_dump($psiculturas);
+			}
+			
+			
+			//return var_dump($gerenciars);
+
+			//$psiculturas = \nemo\Psicultura::where('user_id','=', \Auth::user()->id)->get();
+			return view('listarPsiculturas', ['psiculturas' => $psiculturas]);
     }
 
     public function cadastrar(){
@@ -19,6 +32,11 @@ class PsiculturaController extends Controller
 		if($this->verificaNomeExistente($request->nome)) {
 			$psicultura = \nemo\Psicultura::create([
 				'nome' => $request->nome,
+			]);
+
+			$gerenciar = \nemo\Gerenciar::create([
+				'user_id' => (int) \Auth::user()->id,
+				'psicultura_id' => $psicultura->id,
 			]);
 
 			return redirect("/listar/psiculturas");
