@@ -20,4 +20,8 @@ class Psicultura extends Model
     public function especie_peixes(){
     	return $this->hasMany(EspeciePeixe::class);
     }
+
+    public function gerenciars(){
+        return $this->hasMany(Gerenciar::class);
+    }
 }
