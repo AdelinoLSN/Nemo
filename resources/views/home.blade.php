@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in!<br>
+                    <a href="/listar/pisciculturas">Minhas pisciculturas</a>
                 </div>
             </div>
         </div>

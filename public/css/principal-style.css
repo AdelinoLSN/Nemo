@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+    background-color: aquamarine;
+    margin-bottom: 20px;
+}
+
+body{}
+
+footer {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    background-color: aqua;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+.header-image{
+    width: 300px;
+}
+
+.navbar {
+    background-color:blue;
+    width: 30%;
+    margin:0 auto;
+    color: white;
+}
