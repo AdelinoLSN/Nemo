@@ -14,13 +14,8 @@ class PsiculturaController extends Controller
 			foreach ($gerenciars as &$gerenciar) {
 				$psicultura = \nemo\Psicultura::find($gerenciar->psicultura_id);
 				array_push($psiculturas,$psicultura);
-				//return var_dump($psiculturas);
 			}
-			
-			
-			//return var_dump($gerenciars);
 
-			//$psiculturas = \nemo\Psicultura::where('user_id','=', \Auth::user()->id)->get();
 			return view('listarPsiculturas', ['psiculturas' => $psiculturas]);
     }
 

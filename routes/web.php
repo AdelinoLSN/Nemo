@@ -29,9 +29,9 @@ Route::get('/remover/psicultura/{id}', "PsiculturaController@remover");
 
 Route::post('/apagarPsicultura', "PsiculturaController@apagar");
 
-Route::get('/listar/tanques', "TanqueController@listar");
+Route::get('/listar/tanques/{id}', "TanqueController@listar")->name('listarTanques');
 
-Route::get('/cadastrar/tanque', "TanqueController@cadastrar");
+Route::get('/cadastrar/tanque/{id}', "TanqueController@cadastrar");
 
 Route::post('/adicionarTanque', "TanqueController@adicionar");
 

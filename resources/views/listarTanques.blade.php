@@ -16,7 +16,7 @@
       <br/>
       @endforeach
       <br/>
-      <a href="/cadastrar/tanque/">Cadastrar Novo Tanque</a>
+      <a href="/cadastrar/tanque/{{$psicultura_id}}">Cadastrar Novo Tanque</a>
     </ul>
   </body>
 </html>
