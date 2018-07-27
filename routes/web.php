@@ -15,19 +15,19 @@
     return view('welcome');
 });*/
 
-Route::get('/listar/psiculturas', "PsiculturaController@listar");
+Route::get('/listar/pisciculturas', "PisciculturaController@listar");
 
-Route::get('/cadastrar/psicultura', "PsiculturaController@cadastrar");
+Route::get('/cadastrar/piscicultura', "PisciculturaController@cadastrar");
 
-Route::post('/adicionarPsicultura', "PsiculturaController@adicionar");
+Route::post('/adicionarPiscicultura', "PisciculturaController@adicionar");
 
-Route::get('/editar/psiculturas/{id}', "PsiculturaController@editar");
+Route::get('/editar/pisciculturas/{id}', "PisciculturaController@editar");
 
-Route::post('/salvarPsicultura', "PsiculturaController@salvar");
+Route::post('/salvarPiscicultura', "PisciculturaController@salvar");
 
-Route::get('/remover/psicultura/{id}', "PsiculturaController@remover");
+Route::get('/remover/piscicultura/{id}', "PisciculturaController@remover");
 
-Route::post('/apagarPsicultura', "PsiculturaController@apagar");
+Route::post('/apagarPiscicultura', "PisciculturaController@apagar");
 
 Route::get('/listar/tanques/{id}', "TanqueController@listar")->name('listarTanques');
 

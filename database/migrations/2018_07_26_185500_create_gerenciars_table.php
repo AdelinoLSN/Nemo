@@ -16,12 +16,12 @@ class CreateGerenciarsTable extends Migration
         Schema::create('gerenciars', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('psicultura_id');
+            $table->integer('piscicultura_id');
 
-            $table->unique(['user_id', 'psicultura_id']);
+            $table->unique(['user_id', 'piscicultura_id']);
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('psicultura_id')->references('id')->on('psiculturas');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('piscicultura_id')->references('id')->on('pisciculturas')->onDelete('cascade');
 
         });
     }

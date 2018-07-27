@@ -20,9 +20,9 @@ class CreateEspeciePeixesTable extends Migration
             $table->string("tipo_racao");
             $table->string("temperatura_ideal_agua");
             $table->integer("quantidade_por_volume");
-            $table->integer("psicultura_id")->unsigned();
+            $table->integer("piscicultura_id")->unsigned();
             
-            $table->foreign('psicultura_id')->references('id')->on('psiculturas');
+            $table->foreign('piscicultura_id')->references('id')->on('pisciculturas')->onDelete('cascade');
         });
     }
 

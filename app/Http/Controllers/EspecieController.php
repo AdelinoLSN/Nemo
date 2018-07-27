@@ -18,11 +18,11 @@ class EspecieController extends Controller
     
     public function cadastrar(Request $request){
     	if($this->verificaNomeExistente($request->nome)) {
-    		if(!$this->veriPsiculturaExistente($request->id_psicultura)) {
+    		if(!$this->veriPisciculturaExistente($request->id_piscicultura)) {
 
-                $psicultura = \nemo\Psicultura::find($request->id_psicultura);
+                $piscicultura = \nemo\Piscicultura::find($request->id_piscicultura);
 
-                $psicultura->especie_peixes()->create([
+                $piscicultura->especie_peixes()->create([
                     'nome' => $request->nome,
                     'tempo_desenvolvimento' => $request->tempo_desenvolvimento,
                     'quantidade_por_volume' => $request->quantidade_por_volume,
@@ -32,7 +32,7 @@ class EspecieController extends Controller
 
     			/*$especiePeixe = new \nemo\EspeciePeixe();
     			$especiePeixe->nome = $request->nome;
-    			$especiePeixe->id_psicultura = $request->id_psicultura;
+    			$especiePeixe->id_piscicultura = $request->id_piscicultura;
     			$especiePeixe->tempo_desenvolvimento = $request->tempo_desenvolvimento;
     			$especiePeixe->quantidade_por_volume = $request->quantidade_por_volume;
     			$especiePeixe->tipo_racao = $request->tipo_racao;
@@ -89,8 +89,8 @@ class EspecieController extends Controller
    	return empty($especiePeixe);
     
 	}
-	public function veriPsiculturaExistente($id){
-		$psicultura = \nemo\Psicultura::where('id','=',$id)->first();
-		return empty($psicultura);
+	public function veriPisciculturaExistente($id){
+		$piscicultura = \nemo\Piscicultura::where('id','=',$id)->first();
+		return empty($piscicultura);
 	}
 }

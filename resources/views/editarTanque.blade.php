@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-      <title>Editar Tanque | Nemo - Plataforma para gerenciamento de psiculturas</title>
+      <title>Editar Tanque | Nemo - Plataforma para gerenciamento de pisciculturas</title>
     </head>
     <body>
     	<h1>Editar Tanque</h1>

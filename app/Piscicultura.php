@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use nemo\Tanque;
 use nemo\EspeciePeixe;
 
-class Psicultura extends Model
+class Piscicultura extends Model
 {
 	public $timestamps = false;
 	protected $fillable = ['nome'];
