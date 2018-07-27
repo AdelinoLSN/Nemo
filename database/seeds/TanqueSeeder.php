@@ -15,7 +15,7 @@ class TanqueSeeder extends Seeder
            DB::table('tanques')->insert([
              'volume' => rand(1,1000)/10,
              'manutencao_necessaria' => "Não",
-             'psicultura_id' => rand(1,5)
+             'piscicultura_id' => rand(1,5)
            ]);
          }
      }

@@ -5,15 +5,15 @@ namespace nemo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
 
-use nemo\Psicultura;
+use nemo\Piscicultura;
 
 class Tanque extends Model
 {
 	public $timestamps = false;
 	protected $fillable = ['volume'];
     
-    public function psicultura(){
-    	return $this->belongsTo(Psicultura::class);
+    public function piscicultura(){
+    	return $this->belongsTo(Piscicultura::class);
     }
 
     public function qualidade_aguas(){

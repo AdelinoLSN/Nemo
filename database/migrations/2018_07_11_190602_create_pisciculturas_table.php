@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePsiculturasTable extends Migration
+class CreatePisciculturasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePsiculturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('psiculturas', function (Blueprint $table) {
+        Schema::create('pisciculturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
         });
@@ -26,6 +26,6 @@ class CreatePsiculturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('psiculturas');
+        Schema::dropIfExists('pisciculturas');
     }
 }

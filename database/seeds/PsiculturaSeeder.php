@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PsiculturaSeeder extends Seeder
+class PisciculturaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class PsiculturaSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 5; $i++) {
-        	DB::table('psiculturas')->insert([
+        	DB::table('pisciculturas')->insert([
                 'nome' => str_random(10)]
             );
         }

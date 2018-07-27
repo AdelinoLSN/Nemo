@@ -20,7 +20,7 @@ class CreateQualidadeAguasTable extends Migration
       		$table->integer("tanque_id")->unsigned();
             $table->timestamps();
             
-            $table->foreign('tanque_id')->references('id')->on('tanques');
+            $table->foreign('tanque_id')->references('id')->on('tanques')->onDelete('cascade');;
         });
     }
 
