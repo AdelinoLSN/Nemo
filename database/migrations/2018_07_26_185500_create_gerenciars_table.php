@@ -17,6 +17,7 @@ class CreateGerenciarsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('piscicultura_id');
+            $table->integer('isAdministrador')->default('1');
 
             $table->unique(['user_id', 'piscicultura_id']);
 
