@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gerenciar extends Model
 {
-    protected $fillable = ['user_id', 'piscicultura_id'];
+    protected $fillable = ['user_id', 'piscicultura_id','is_administrador'];
     public $timestamps = false;
 
     public function user(){

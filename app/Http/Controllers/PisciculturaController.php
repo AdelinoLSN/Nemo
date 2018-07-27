@@ -70,15 +70,12 @@ class PisciculturaController extends Controller
     public function apagar(Request $request){
 		$piscicultura = \nemo\Piscicultura::find($request->id);
 		$piscicultura->delete();
-		return redirect("/listar/pisciculturas");
-    }
+		return redirect("listar/pisciculturas");
+	}
 
     public function verificaNomeExistente($nome){
     	$piscicultura = \nemo\Piscicultura::where('nome','=',$nome)->first();
     	return empty($piscicultura);
     }
 
-    public function phpAlert($msg) {
-    	echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-    }
 }

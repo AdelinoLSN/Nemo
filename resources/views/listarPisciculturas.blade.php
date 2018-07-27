@@ -8,6 +8,7 @@
 			@foreach ($pisciculturas as $piscicultura)
 				<li>{{ $piscicultura->nome }}</li>
 				<a href="/listar/tanques/{{$piscicultura->id}}">Tanques</a>
+				<a href="/listar/gerenciadores/piscicultura/{{$piscicultura->id}}">Gerenciadores</a>
 				<a href="/editar/pisciculturas/{{$piscicultura->id}}">Editar</a>
 				<a href="/remover/piscicultura/{{$piscicultura->id}}">Remover</a>
 			@endforeach		
