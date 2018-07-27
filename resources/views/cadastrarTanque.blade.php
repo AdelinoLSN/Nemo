@@ -8,7 +8,7 @@
     <form action="/adicionarTanque" method="post">
       {{ csrf_field() }}
       Volume: <input type="number" min="0" step="any" name="volume" required/><br/>
-      ID da Psicultura: <input type="number" min="0" name="id_psicultura" required/><br/>
+      <input type="hidden" name="id_psicultura" value="{{$id}}">
       <input type="submit" value="cadastrar" />
     </form>
   </body>

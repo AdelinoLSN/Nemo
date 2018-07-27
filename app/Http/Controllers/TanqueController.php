@@ -9,30 +9,33 @@ use Validator;
 
 class TanqueController extends Controller
 {
-  public function listar()
+  public function __construct()
   {
-    $tanques = \nemo\Tanque::all();
-    return view('listarTanques', ['tanques' => $tanques]);
+      $this->middleware('auth');
+
   }
 
-  public function cadastrar(Request $request)
+  public function listar($id)
   {
-    return view("cadastrarTanque");
+    $tanques = \nemo\Tanque::where('psicultura_id','=',$id)->get();
+    return view('listarTanques', ['tanques' => $tanques, 'psicultura_id' => $id]);
+  }
+
+  public function cadastrar($id)
+  {
+    return view("cadastrarTanque", ['id' => $id]);
   }
 
   public function adicionar(Request $request){
-    if(!$this->verificaPsiculturaExistente($request->id_psicultura)) {
 
-      $psicultura = \nemo\Psicultura::find($request->id_psicultura);
+    $psicultura = \nemo\Psicultura::find($request->id_psicultura);
 
-      $psicultura->tanques()->create([
-        'volume' => $request->volume,
-        'manutencao_necessaria' => 'Não',
-      ]);
+    $psicultura->tanques()->create([
+      'volume' => $request->volume,
+      'manutencao_necessaria' => 'Não',
+    ]);
 
-      return redirect("/listar/tanques");
-    }
-    return redirect("/listar/tanques");
+    return redirect()->route("listarTanques", ['id' => $request->id_psicultura]);
   }
 
   public function editar($id) {
@@ -44,8 +47,8 @@ class TanqueController extends Controller
 	 	$tanque = \nemo\Tanque::find($request->id);
   	$tanque->volume = $request->volume;
     $tanque->manutencao_necessaria = $request->manutencao_necessaria;
-  	$tanque->update();
-  	return redirect("/listar/tanques");
+    $tanque->update();
+    return redirect()->route("listarTanques", ['id' => $tanque->psicultura_id]);
   }
 
   public function remover(Request $request){
@@ -55,12 +58,7 @@ class TanqueController extends Controller
 
 	public function apagar(Request $request){
   	$tanque = \nemo\Tanque::find($request->id);
-  	$tanque->delete();
-  	return redirect("/listar/tanques");
+    $tanque->delete();
+    return redirect()->route("listarTanques", ['id' => $tanque->psicultura_id]);
 	}
-
-  public function verificaPsiculturaExistente($id){
-    $psicultura = \nemo\Psicultura::where('id','=',$id)->first();
-    return empty($psicultura);
-  }
 }

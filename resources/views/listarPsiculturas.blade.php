@@ -7,6 +7,7 @@
 		<ul>
 			@foreach ($psiculturas as $psicultura)
 				<li>{{ $psicultura->nome }}</li>
+				<a href="/listar/tanques/{{$psicultura->id}}">Tanques</a>
 				<a href="/editar/psiculturas/{{$psicultura->id}}">Editar</a>
 				<a href="/remover/psicultura/{{$psicultura->id}}">Remover</a>
 			@endforeach		
