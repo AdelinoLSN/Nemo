@@ -1,20 +1,29 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-	<head>
-		<title>Listar Pisciculturas | Nemo - Plataforma para gerenciamento de pisciculturas</title>
-	</head>
-	<body>
-		<ul>
-			@foreach ($pisciculturas as $piscicultura)
-				<li>{{ $piscicultura->nome }}</li>
-				<a href="/listar/tanques/{{$piscicultura->id}}">Tanques</a>
-				<a href="/listar/gerenciadores/piscicultura/{{$piscicultura->id}}">Gerenciadores</a>
-				<a href="/editar/pisciculturas/{{$piscicultura->id}}">Editar</a>
-				<a href="/remover/piscicultura/{{$piscicultura->id}}">Remover</a>
-			@endforeach		
-		</ul>
+@extends('layouts.principal')
+@section('title','Listar Pisciculturas')
+@section('conteudo')
+	<div>
 		<form action="/cadastrar/piscicultura" method="get" >
 			<input type="submit" value="Nova Piscicultura" />
 		</form>
-	</body>
-</html>
+	</div>	
+
+	<div>
+		<table class="table">
+			<tr>
+				<th>Nome</th>
+				<th>Ações</th>
+			</tr>
+			@foreach ($pisciculturas as $piscicultura)
+			<tr>
+				<td><li>{{ $piscicultura->nome }}</li></td>
+				<td>
+					<a href="/listar/tanques/{{$piscicultura->id}}">Tanques</a><br>
+					<a href="/listar/gerenciadores/piscicultura/{{$piscicultura->id}}">Gerenciadores</a><br>
+					<a href="/editar/pisciculturas/{{$piscicultura->id}}">Editar</a><br>
+					<a href="/remover/piscicultura/{{$piscicultura->id}}">Remover</a>
+				</td>
+			</tr>
+			@endforeach		
+		</table>
+	</div>
+@stop

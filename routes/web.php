@@ -50,6 +50,7 @@ Route::get('/remover/especie/{id}', "EspecieController@remover");
 
 //Rotas de Autenticação
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 //Rotas de Sistema
 Route::get('/', 'HomeController@index')->name('home');

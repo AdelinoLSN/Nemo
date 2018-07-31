@@ -70,6 +70,8 @@ class GerenciarController extends Controller
         if((int) $gerenciar->user_id == \Auth::user()->id){
             return redirect("/listar/pisciculturas");
         }
+
+        return redirect()->route("listar.gerenciadores", ['id' => $piscicultura_id]);
     }
 
 }
