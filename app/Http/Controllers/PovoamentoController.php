@@ -28,13 +28,28 @@ class PovoamentoController extends Controller
     }
     public function listar ($id) {
 			$povoamentos = \nemo\Povoamento::where('tanque_id','=',$id)->get();
-			$especiesPeixe = array();
-			
+
+			$povoamentosDic = array();
+
 			foreach ($povoamentos as &$povoamento) {
 				$especiePeixe= \nemo\EspeciePeixe::find($povoamento->especie_id);
-				array_push($especiesPeixe,$especiePeixe);
+				try {
+					array_push($povoamentosDic[$especiePeixe->nome], $povoamento);				
+				}catch(\Exception $e){
+					$povoamentosDic[$especiePeixe->nome] = array();
+					array_push($povoamentosDic[$especiePeixe->nome], $povoamento);
+				}
 			}
-    		return view('infoTanque', ['listaEspecies' => $especiesPeixe]);
+			
+			//dd(array_keys($povoamentosDic));
+			
+			foreach ($povoamentosDic as &$povoamento) {
+				//dd(key($povoamento));			
+			}
+
+			
+			
+    		return view('infoTanque', ['povoamentos' => $povoamentosDic]);
     		   	
     }
 }

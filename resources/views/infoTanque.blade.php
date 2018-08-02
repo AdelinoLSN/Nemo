@@ -1,20 +1,31 @@
-
 <!doctype html>
 @extends('layouts.principal')
 @section('title','Informacoes Tanques')
 @section('conteudo')
 		<div>
+		
 		<table class="table">
 			<tr>
-				<th>Especies</th>
+				<th>Espécie</th>
+				<th>Povoamentos</th>		
 			</tr>
-			@foreach ($listaEspecies as $EspeciePeixe)
+						
+			<?php
+				$keys = array_keys($povoamentos);
+			?>
+			
+			@foreach ($keys as $key)
+			@foreach ($povoamentos[$key] as $povoamento)
 			<tr>
-				<td><li>Nome: {{ $EspeciePeixe->nome}}<br>Tempo de desenvolvimento: {{ $EspeciePeixe->tempo_desenvolvimento}} meses<br>
-    	 				  Tipo de ração: {{ $EspeciePeixe->tipo_racao}} <br/>Temperatura ideal da água: {{ $EspeciePeixe->temperatura_ideal_agua}} graus,
-    	              Quantidade de peixes por volume: {{ $EspeciePeixe->quantidade_por_volume}}<br/></li></td>
+				<td>{{$key}}</td>
+				<td>
+				Quantidade: {{$povoamento->quantidade}}
+				Data de povoamento: {{$povoamento->data}}
+				</td>		
 			</tr>
-			@endforeach		
-		</table>
+			@endforeach
+			@endforeach
+		</table>		
+		
 	</div>
 @stop
