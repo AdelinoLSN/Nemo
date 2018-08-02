@@ -1,4 +1,8 @@
+
 <!doctype html>
+@extends('layouts.principal')
+@section('title','Cadastrar Especie')
+@section('conteudo')
 <html lang="{{ app()->getLocale() }}">
     <head>
             <title>Cadastro de Especie</title>
@@ -13,10 +17,11 @@
 	    		Tempo de desenvolvimento: <input type="number" name="tempo_desenvolvimento" required="required" ><br/>
     			Tipo de Ração: <input type="text" name="tipo_racao" required="required"><br/>
     			Temperatura ideal da água: <input type="number" name="temperatura_ideal_agua" required="required"><br/>
-    			ID da piscicultura: <input type="integer" name="id_piscicultura" required="required"><br/>
     			Quantidade de peixes por volume: <input type="number" name="quantidade_por_volume"required="required" <br/>
+    			<input type="hidden" name="tanque_id" value="{{$id}}">
     			<input  type="submit" value="cadastrar" />
     	</form>
  
     </body>
 </html>
+@stop

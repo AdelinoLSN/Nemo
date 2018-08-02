@@ -40,13 +40,13 @@ Route::get('/remover/tanque/{id}', "TanqueController@remover");
 Route::post('/apagarTanque', "TanqueController@apagar");
 
 //Rotas de Espécie
-Route::get('/listar/especies', "EspecieController@listar");
-Route::get('/adicionar/especie', "EspecieController@adicionar");
+Route::get('/listar/especies/{id}', "EspecieController@listar")->name('listarEspecies');
+Route::get('/adicionar/especie/{id}', "EspecieController@adicionar");
 Route::post('/cadastrarEspecie', "EspecieController@cadastrar");
 Route::post('/salvarEspecie', "EspecieController@salvar");
-Route::get('/editar/especie/{id}', "EspecieController@editar");
+Route::get('/editar/tanque/{id}/especie/{especiePeixe_id}', "EspecieController@editar");
 Route::post('/apagarEspecie', "EspecieController@apagar");
-Route::get('/remover/especie/{id}', "EspecieController@remover");
+Route::get('/remover/tanque/{id}/especie/{especiePeixe_id}', "EspecieController@remover");
 
 //Rotas de Autenticação
 Auth::routes();
@@ -64,4 +64,10 @@ Route::get('/editar/qualidadeAgua/{id}', "QualidadeAguaController@editar");
 Route::post('/salvarQualidadeAgua', "QualidadeAguaController@salvar");
 Route::post('/apagarQualidadeAgua', "QualidadeAguaController@apagar");
 Route::get('/remover/qualidadeAgua/{id}', "QualidadeAguaController@remover");
+
+//Rotas de Povoamento
+Route::get('/povoar/tanque/{tanque_id}/especie/{especie_id}',  "PovoamentoController@povoarTanque");
+Route::post('/inserirPeixe', "PovoamentoController@inserirPeixe");
+Route::get('/info/tanque/{id}', "PovoamentoController@listar")->name('infoTanque');
+
 
