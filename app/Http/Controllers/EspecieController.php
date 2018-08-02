@@ -7,20 +7,23 @@ use Validator;
 
 class EspecieController extends Controller
 {
-    public function listar () {
-			$especiesPeixe= \nemo\EspeciePeixe::all();
-			return view("listarEspecie", ['listaEspecies' => $especiesPeixe]);    	
+    public function listar ($id) {
+			$tanque = \nemo\Tanque::find($id);
+    		$especiesPeixe= \nemo\EspeciePeixe::where('piscicultura_id','=',$tanque->piscicultura_id)->get();
+    		return view('listarEspecie', ['listaEspecies' => $especiesPeixe, 'piscicultura_id' => $id,'id'=> $id]);
+    		   	
     }
    
-    public function adicionar() {
-			return view("cadastrarEspecie");    
+    public function adicionar($id) {
+			return view("cadastrarEspecie", ['id' => $id]);    
     }
     
     public function cadastrar(Request $request){
+    	$tanque = \nemo\Tanque::find($request->tanque_id);
     	if($this->verificaNomeExistente($request->nome)) {
-    		if(!$this->veriPisciculturaExistente($request->id_piscicultura)) {
+    		if(!$this->veriPisciculturaExistente($tanque->piscicultura_id)) {   			
 
-                $piscicultura = \nemo\Piscicultura::find($request->id_piscicultura);
+                $piscicultura = \nemo\Piscicultura::find($tanque->piscicultura_id);
 
                 $piscicultura->especie_peixes()->create([
                     'nome' => $request->nome,
@@ -30,29 +33,23 @@ class EspecieController extends Controller
                     'temperatura_ideal_agua' => $request->temperatura_ideal_agua,
                 ]);
 
-    			/*$especiePeixe = new \nemo\EspeciePeixe();
-    			$especiePeixe->nome = $request->nome;
-    			$especiePeixe->id_piscicultura = $request->id_piscicultura;
-    			$especiePeixe->tempo_desenvolvimento = $request->tempo_desenvolvimento;
-    			$especiePeixe->quantidade_por_volume = $request->quantidade_por_volume;
-    			$especiePeixe->tipo_racao = $request->tipo_racao;
-    			$especiePeixe->temperatura_ideal_agua = $request->temperatura_ideal_agua;
-    			$especiePeixe->save();*/
-    		return redirect("/listar/especies");
+    			
+    		return redirect()->route("listarEspecies", ['id' => $tanque->id]);
     		}
     		
     	}
-    	return redirect("/listar/especies");
+    	return redirect()->route("listarEspecies", ['id' => $tanque->id]);
    	
     }
     
-    public function editar($id) {
+    public function editar($tanque_id, $id) {
 			$especiePeixe= \nemo\EspeciePeixe::find($id);   
-    		return view("editarEspecie", ['especiePeixe' => $especiePeixe]);
+    		return view("editarEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id]);
     }
     
     public function salvar(Request $request){
-	  	$especiePeixe = \nemo\EspeciePeixe::find($request->id);
+	  	$especiePeixe = \nemo\EspeciePeixe::find($request->especie_id);
+	  	$tanque = \nemo\Tanque::find($request->tanque_id);
 	  	if(($request->nome)==$especiePeixe->nome) {
 	  		$especiePeixe->nome = $request->nome;
     		$especiePeixe->tempo_desenvolvimento = $request->tempo_desenvolvimento;
@@ -67,21 +64,22 @@ class EspecieController extends Controller
     		$especiePeixe->tipo_racao = $request->tipo_racao;
     		$especiePeixe->temperatura_ideal_agua = $request->temperatura_ideal_agua;
     		$especiePeixe->update();
-
-    		return redirect("/listar/especies");
+    		return redirect()->route("listarEspecies", ['id' => $request->tanque_id]);
    	}
-   	return redirect("/listar/especies");
+   	
+   	return redirect()->route("listarEspecies", ['id' => $request->tanque_id]);
     }
     
-    public function remover(Request $request){
-  		$especiePeixe = \nemo\EspeciePeixe::find($request->id);
-    	return view("/removerEspecie", ['especiePeixe' => $especiePeixe]);
+    public function remover($tanque_id, $id){
+  		$especiePeixe = \nemo\EspeciePeixe::find($id);
+    	return view("/removerEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id]);
 	}
 	
 	 public function apagar(Request $request){
-  		$especiePeixe = \nemo\EspeciePeixe::find($request->id);
+	 	$tanque = \nemo\Tanque::find($request->tanque_id);
+  		$especiePeixe = \nemo\EspeciePeixe::find($request->especie_id);
     	$especiePeixe->delete();
-    	return redirect("/listar/especies");
+    	return redirect()->route("listarEspecies", ['id' => $request->tanque_id]);
 	}
 	
 	public function verificaNomeExistente($nome) {

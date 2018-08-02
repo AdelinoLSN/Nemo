@@ -1,4 +1,8 @@
+
 <!doctype html>
+@extends('layouts.principal')
+@section('title','Editar Especie')
+@section('conteudo')
 <html lang="{{ app()->getLocale() }}">
     <head>
             <title>Editar Especie</title>
@@ -9,7 +13,8 @@
     	
     	<form action="/salvarEspecie" method="post"> 
     		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    			<input type="hidden" name="id" value="{{ $especiePeixe->id}}" />
+    			<input type="hidden" name="especie_id" value="{{ $especie_id}}" />
+    			<input type="hidden" name="tanque_id" value="{{ $tanque_id}}" />
     			Nome: <input type="text" name="nome"value="{{$especiePeixe->nome}}"required="required"><br/>
     			Tempo de desenvolvimento: <input type="number" name="tempo_desenvolvimento"value="{{$especiePeixe->tempo_desenvolvimento}}"required="required"><br/>
     			Tipo de Ração: <input type="text" name="tipo_racao"value="{{$especiePeixe->tipo_racao}}"required="required"><br/>
@@ -20,3 +25,4 @@
  
     </body>
 </html>
+@stop
