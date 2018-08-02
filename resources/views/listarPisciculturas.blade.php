@@ -8,14 +8,14 @@
 	</div>	
 
 	<div>
-		<table class="table">
+		<table class="table table-hover">
 			<tr>
 				<th>Nome</th>
 				<th>Ações</th>
 			</tr>
 			@foreach ($pisciculturas as $piscicultura)
 			<tr>
-				<td><li>{{ $piscicultura->nome }}</li></td>
+				<td>{{ $piscicultura->nome }}</td>
 				<td>
 					<a href="/listar/tanques/{{$piscicultura->id}}">Tanques</a><br>
 					<a href="/listar/gerenciadores/piscicultura/{{$piscicultura->id}}">Gerenciadores</a><br>
