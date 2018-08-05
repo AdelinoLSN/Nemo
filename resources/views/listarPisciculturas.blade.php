@@ -1,14 +1,16 @@
 @extends('layouts.principal')
 @section('title','Listar Pisciculturas')
+@section('path')
+	Listar Pisciculturas
+@stop
 @section('conteudo')
 	<div>
 		<form action="/cadastrar/piscicultura" method="get" >
-			<input type="submit" value="Nova Piscicultura" />
+			<input type="submit" value="Nova Piscicultura" class="btn btn-primary" />
 		</form>
 	</div>	
-
 	<div>
-		<table class="table table-hover">
+		<table class="table">
 			<tr>
 				<th>Nome</th>
 				<th>Ações</th>

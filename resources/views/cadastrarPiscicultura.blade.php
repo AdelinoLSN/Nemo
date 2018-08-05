@@ -1,11 +1,15 @@
 @extends('layouts.principal')
-@section('title','Cadastrar Piscicultura')
+@section('title','Criar Piscicultura')
+@section('path')
+	Criar Piscicultura
+@stop
 @section('conteudo')
-	<h1>Cadastrar Piscicultura</h1>
 	<form action="/adicionarPiscicultura" method="post">
 		{{ csrf_field() }}
-		
-		Nome da piscicultura: <input type="text" name="nome" required/>
-		<input type="submit" value="Cadastrar" />		
+		<div class="form-group">
+			<label>Nome da piscicultura</lable>
+			<input type="text" class="form-control" name="nome" placeholder="Peixes Felizes" required/>
+		</div>
+		<button type="submit" class="btn btn-primary">Criar</button>		
 	</form>
 @stop

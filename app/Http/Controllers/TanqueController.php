@@ -12,18 +12,19 @@ class TanqueController extends Controller
   public function __construct()
   {
       $this->middleware('auth');
-
   }
 
   public function listar($id)
   {
     $tanques = \nemo\Tanque::where('piscicultura_id','=',$id)->get();
-    return view('listarTanques', ['tanques' => $tanques, 'piscicultura_id' => $id]);
+    $piscicultura = \nemo\Piscicultura::find($id);
+    return view('listarTanques', ['tanques' => $tanques, 'piscicultura' => $piscicultura]);
   }
 
   public function cadastrar($id)
   {
-    return view("cadastrarTanque", ['id' => $id]);
+    $piscicultura = \nemo\Piscicultura::find($id);
+    return view("cadastrarTanque", ['piscicultura' => $piscicultura]);
   }
 
   public function adicionar(Request $request){
@@ -35,12 +36,16 @@ class TanqueController extends Controller
       'manutencao_necessaria' => 'Não',
     ]);
 
-    return redirect()->route("listarTanques", ['id' => $request->id_piscicultura]);
+    return redirect()->route("listarTanques", ['piscicultura' => $request->id_piscicultura]);
   }
 
   public function editar($id) {
-		$tanque = \nemo\Tanque::find($id);
-  	return view("editarTanque", ['tanque' => $tanque]);
+    $tanque = \nemo\Tanque::find($id);
+    $piscicultura = \nemo\Piscicultura::find($tanque->piscicultura_id);
+    return view("editarTanque", [
+      'tanque' => $tanque,
+      'piscicultura' => $piscicultura,
+    ]);
   }
 
   public function salvar(Request $request){
@@ -52,12 +57,13 @@ class TanqueController extends Controller
   }
 
   public function remover(Request $request){
-  	$tanque = \nemo\Tanque::find($request->id);
-  	return view("/removerTanque", ['tanque' => $tanque]);
+    $tanque = \nemo\Tanque::find($request->id);
+    $piscicultura = \nemo\Piscicultura::find($tanque->piscicultura_id);
+  	return view("/removerTanque", ['tanque' => $tanque, 'piscicultura' => $piscicultura]);
 	}
 
 	public function apagar(Request $request){
-  	$tanque = \nemo\Tanque::find($request->id);
+  	$tanque = \nemo\Tanque::find($request->tanque_id);
     $tanque->delete();
     return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
 	}
