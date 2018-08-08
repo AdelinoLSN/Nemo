@@ -17,6 +17,7 @@
 
 //Rotas de Piscicultura
 Route::get('/listar/pisciculturas', "PisciculturaController@listar");
+Route::get('/info/piscicultura/{id}',"PisciculturaController@informar");
 Route::get('/cadastrar/piscicultura', "PisciculturaController@cadastrar");
 Route::post('/adicionarPiscicultura', "PisciculturaController@adicionar");
 Route::get('/editar/pisciculturas/{id}', "PisciculturaController@editar");

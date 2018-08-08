@@ -11,6 +11,6 @@
       <label>Volume</label>
       <input class="form-control" type="number" min="0" step="any" name="volume" placeholder="Em litros" required/><br/>
     </div>
-    <input class="btn btn-primary" type="submit" value="Cadastrar" />
+    <input class="btn btn-success" type="submit" value="Cadastrar" />
   </form>
 @stop

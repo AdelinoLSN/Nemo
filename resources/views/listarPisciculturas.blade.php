@@ -13,17 +13,10 @@
 		<table class="table">
 			<tr>
 				<th>Nome</th>
-				<th>Ações</th>
 			</tr>
 			@foreach ($pisciculturas as $piscicultura)
 			<tr>
-				<td>{{ $piscicultura->nome }}</td>
-				<td>
-					<a href="/listar/tanques/{{$piscicultura->id}}">Tanques</a><br>
-					<a href="/listar/gerenciadores/piscicultura/{{$piscicultura->id}}">Gerenciadores</a><br>
-					<a href="/editar/pisciculturas/{{$piscicultura->id}}">Editar</a><br>
-					<a href="/remover/piscicultura/{{$piscicultura->id}}">Remover</a>
-				</td>
+				<td><a href="/info/piscicultura/{{$piscicultura->id}}">{{ $piscicultura->nome }}</a></td>
 			</tr>
 			@endforeach		
 		</table>
