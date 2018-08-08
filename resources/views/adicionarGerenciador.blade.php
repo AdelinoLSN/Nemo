@@ -1,12 +1,16 @@
 @extends('layouts.principal')
 @section('title','Adicionar Gerenciador')
+@section('path')
+	Piscicultura: <b>{{$piscicultura->nome}}</b> > Adicionar Gerenciador</h2>
+@stop
 @section('conteudo')
-	<h1>Adicionar Gerenciador</h1>
-    <form action="/inserirGerenciador" method="post">
-      {{ csrf_field() }}
-      Piscicultura: {{$piscicultura->nome}}<br/>
-      E-mail: <input type="email" name="email" required/><br/>
-      <input type="hidden" name="piscicultura_id" value="{{$piscicultura->id}}">
-      <input type="submit" value="cadastrar" />
-    </form>
+  <form action="/inserirGerenciador" method="post">
+    {{ csrf_field() }}
+    <input type="hidden" name="piscicultura_id" value="{{$piscicultura->id}}">
+    <div class="form-group">
+      <label>Endereço de e-mail</label>
+      <input type="email" class="form-control" name="email" placeholder="exemplo@exemplo.com" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+  </form>
 @stop

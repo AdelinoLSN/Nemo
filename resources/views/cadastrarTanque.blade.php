@@ -1,11 +1,16 @@
 @extends('layouts.principal')
 @section('title','Cadastrar Tanque')
+@section('path')
+	Piscicultura: {{$piscicultura->nome}} > Cadastrar Tanque
+@stop
 @section('conteudo')
-  <h1>Cadastrar Tanque</h1>
   <form action="/adicionarTanque" method="post">
     {{ csrf_field() }}
-    Volume: <input type="number" min="0" step="any" name="volume" required/><br/>
-    <input type="hidden" name="id_piscicultura" value="{{$id}}">
-    <input type="submit" value="cadastrar" />
+    <input type="hidden" name="id_piscicultura" value="{{$piscicultura->id}}">
+    <div class="form-group">
+      <label>Volume</label>
+      <input class="form-control" type="number" min="0" step="any" name="volume" placeholder="Em litros" required/><br/>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Cadastrar" />
   </form>
 @stop
