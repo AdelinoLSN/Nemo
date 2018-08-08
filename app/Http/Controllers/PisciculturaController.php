@@ -17,7 +17,27 @@ class PisciculturaController extends Controller
 			}
 
 			return view('listarPisciculturas', ['pisciculturas' => $pisciculturas]);
-    }
+	}
+	
+	public function informar($piscicultura_id){
+		$piscicultura = \nemo\Piscicultura::find($piscicultura_id);
+		$tanques = \nemo\Tanque::where('piscicultura_id','=',$piscicultura_id)->get();
+		$gerenciadores = \nemo\Gerenciar::where('piscicultura_id','=',$piscicultura_id)->where('is_administrador','=',0)->get();
+		$administrador = \nemo\Gerenciar::where('piscicultura_id','=',$piscicultura_id)->where('is_administrador','=',1)->first();		
+
+		$dono = False;
+		if($administrador->user_id == \Auth::user()->id){
+			$dono = True;
+		}
+
+		return view('informarPiscicultura', [
+			'piscicultura' => $piscicultura,
+			'quantidade_tanques' => count($tanques),
+			'quantidade_gerenciadores' => count($gerenciadores),
+			'dono' => $dono,
+			'user_id' => \Auth::user()->id,
+		]);
+	}
 
     public function cadastrar(){
     	return view("cadastrarPiscicultura");
