@@ -24,15 +24,13 @@ class EspecieController extends Controller
     }
     
     public function cadastrar(Request $request){
-		$validator = Validator::make($request->all(),[
+		/*$validator = Validator::make($request->all(),[
 			'nome' => 'required',
 			'tempo_desenvolvimento' => 'required'],
 			['required' => 'O campo :attribute é obrigatório',
 			'unique' => 'O :attribute já está em uso'
 			])
-			->validate();
-
-		dd(NULL);
+			->validate();*/
 
     	$tanque = \nemo\Tanque::find($request->tanque_id);
     	if($this->verificaNomeExistente($request->nome)) {
