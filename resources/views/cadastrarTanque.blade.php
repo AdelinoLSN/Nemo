@@ -9,7 +9,7 @@
     <input type="hidden" name="id_piscicultura" value="{{$piscicultura->id}}">
     <div class="form-group">
       <label>Volume</label>
-      <input class="form-control" type="number" min="0" step="any" name="volume" placeholder="Em litros" required/><br/>
+      <input class="form-control" type="number" min="0" step="any" name="volume" placeholder="Em litros" autofocus required/><br/>
     </div>
     <input class="btn btn-success" type="submit" value="Cadastrar" />
   </form>

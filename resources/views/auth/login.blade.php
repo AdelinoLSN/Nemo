@@ -4,7 +4,7 @@
 	Entrar
 @stop
 @section('conteudo')
-<div class="container" width="50%">
+<div class="container">
     <div class="card">
         <div class="card-header">
             Entrar

@@ -2,7 +2,7 @@
 @extends('layouts.principal')
 @section('title','Editar Especie')
 @section('path')
-	Piscultura {{$piscicultura->nome}} > Tanque {{$tanque->id}} > Povoar > Especies > Cadastrar nova especie
+	Piscultura {{$piscicultura->nome}} > Tanque {{$tanque->id}} > Povoar > Espécies > Cadastrar nova espécie
 @stop
 @section('conteudo')	
 	<form action="/cadastrarEspecie" method="post">

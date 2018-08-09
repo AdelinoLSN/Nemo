@@ -8,6 +8,11 @@ use nemo\Validator\PisciculturaValidator;
 
 class PisciculturaController extends Controller
 {
+
+	public function __construct(){
+		$this->middleware('auth');
+	}
+
     public function listar(){
 			$gerenciars = \nemo\Gerenciar::where('user_id','=',\Auth::user()->id)->get();
 
@@ -66,23 +71,6 @@ class PisciculturaController extends Controller
 			
 		}
 
-
-/*
-		if($this->verificaNomeExistente($request->nome)) {
-			$piscicultura = \nemo\Piscicultura::create([
-				'nome' => $request->nome,
-			]);
-
-			$gerenciar = \nemo\Gerenciar::create([
-				'user_id' => (int) \Auth::user()->id,
-				'piscicultura_id' => $piscicultura->id,
-			]);
-
-			return redirect("/listar/pisciculturas");
-		}
-
-		return redirect("/listar/pisciculturas");
-*/
     }
 
     public function editar($id){
@@ -92,17 +80,23 @@ class PisciculturaController extends Controller
 
     public function salvar(Request $request){
 		$piscicultura = \nemo\Piscicultura::find($request->id);
-		if(($request->nome) == $piscicultura->nome) {
-			$piscicultura->nome = $request->nome;
-			$piscicultura->update();
-			return redirect("/listar/pisciculturas");
-		}elseif($this->verificaNomeExistente($request->nome)) {
-			$piscicultura->nome = $request->nome;
-			$piscicultura->update();
+
+		if($piscicultura->nome == $request['nome']){
 			return redirect("/listar/pisciculturas");
 		}
 
-		return redirect("/listar/pisciculturas");
+		$piscicultura->nome = $request['nome'];
+		$dados = array_values(((array) $piscicultura))[12];
+		
+		try {
+			PisciculturaValidator::validate($dados);
+			$piscicultura->update();
+			
+			return redirect("/listar/pisciculturas");			
+
+		}catch(\nemo\Validator\ValidationException $e){
+			return back()->withErrors($e->getValidator())->withInput();
+		}
 
     }
 
@@ -116,10 +110,5 @@ class PisciculturaController extends Controller
 		$piscicultura->delete();
 		return redirect("listar/pisciculturas");
 	}
-
-    public function verificaNomeExistente($nome){
-    	$piscicultura = \nemo\Piscicultura::where('nome','=',$nome)->first();
-    	return empty($piscicultura);
-    }
 
 }
