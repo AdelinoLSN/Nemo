@@ -9,6 +9,7 @@ class GerenciarController extends Controller
 
     public function listarGerenciadores($id){
 		$gerenciars = \nemo\Gerenciar::where('piscicultura_id','=',$id)->get();
+		$piscicultura = \nemo\Piscicultura::find($id);
 
 		$view = "listarGerenciadoresAdmin";
 
@@ -31,6 +32,7 @@ class GerenciarController extends Controller
 			'admin' => $admin,
             'gerenciadores' => $gerenciadores,
             'piscicultura_id' => $id,
+            'piscicultura' => $piscicultura,
 		]);
     }
     

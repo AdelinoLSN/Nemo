@@ -1,13 +1,17 @@
 <!doctype html>
 @extends('layouts.principal')
-@section('title','Informacoes Tanques')
+@section('title','Informações de Tanque')
+@section('path')
+	Piscultura {{$piscicultura->nome}} > Informações de tanque {{$tanque->id}}
+@stop
 @section('conteudo')
 		<div>
 		
 		<table class="table">
 			<tr>
 				<th>Espécie</th>
-				<th>Povoamentos</th>		
+				<th>Quantidade</th>
+				<th>Data de inserção</th>			
 			</tr>
 						
 			<?php
@@ -18,10 +22,9 @@
 			@foreach ($povoamentos[$key] as $povoamento)
 			<tr>
 				<td>{{$key}}</td>
-				<td>
-				Quantidade: {{$povoamento->quantidade}}
-				Data de povoamento: {{$povoamento->data}}
-				</td>		
+				<td>{{$povoamento->quantidade}}</td>	
+				<td>{{$povoamento->data}}</td>
+					
 			</tr>
 			@endforeach
 			@endforeach

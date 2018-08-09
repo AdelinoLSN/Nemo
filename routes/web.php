@@ -48,6 +48,8 @@ Route::post('/salvarEspecie', "EspecieController@salvar");
 Route::get('/editar/tanque/{id}/especie/{especiePeixe_id}', "EspecieController@editar");
 Route::post('/apagarEspecie', "EspecieController@apagar");
 Route::get('/remover/tanque/{id}/especie/{especiePeixe_id}', "EspecieController@remover");
+Route::get('/tanque/{id}/especie/{especiePeixe_id}/info', "EspecieController@informar");
+
 
 //Rotas de Autenticação
 Auth::routes();

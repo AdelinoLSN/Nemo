@@ -1,24 +1,19 @@
-
 <!doctype html>
 @extends('layouts.principal')
-@section('title','Remover Especie')
-@section('conteudo')
-<html lang="{{ app()->getLocale() }}">
-    <head>
-            <title>Remover Especie</title>
-
-    </head>
-    <body>
-    	<h1>Confirmar Remover Especie</h1>
-    	
-    	<form action="/apagarEspecie" method="post"> 
-    		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    			<input type="hidden" name="especie_id" value="{{ $especie_id}}" />
-    			<input type="hidden" name="tanque_id" value="{{ $tanque_id}}" />
-    			Nome: <input type="text" disabled="disabled" name="nome" value="{{$especiePeixe->nome}}"><br/>
-    			<input  type="submit" value="remover!" />
-    	</form>
- 
-    </body>
-</html>
+@section('title','Editar Especie')
+@section('path')
+	Piscultura {{$piscicultura->nome}} > Tanque {{$tanque_id}} > Povoar > Informações da especie: {{$especiePeixe->nome}} > Remover
 @stop
+@section('conteudo')
+	<form action="/apagarEspecie" method="post"> 
+		{{ csrf_field() }}
+		<input type="hidden" name="especie_id" value="{{ $especie_id}}" />
+    	<input type="hidden" name="tanque_id" value="{{ $tanque_id}}" />
+		<div class="form-group">
+			<label>Especie</label><br>	
+			<input type="text" disabled="disabled" name="nome" value="{{$especiePeixe->nome}}"/>
+		</div>
+		<input type="submit" class="btn btn-danger" value="Remover" />
+	</form>
+@stop
+
