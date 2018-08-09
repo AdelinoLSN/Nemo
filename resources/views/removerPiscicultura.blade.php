@@ -1,11 +1,19 @@
+<!doctype html>
 @extends('layouts.principal')
-@section('title','Remover Piscicultura')
+@section('title','Editar Especie')
+@section('path')
+	Piscultura {{$piscicultura->nome}} > Remover
+@stop
 @section('conteudo')
-	<h1>Confirmar Remover Piscicultura</h1>
 	<form action="/apagarPiscicultura" method="post" >
 		{{ csrf_field() }}
 		<input type="hidden" name="id" value=" {{ $piscicultura->id}}"/>
-		Nome da piscicultura: <input type='text' disabled="disabled" name="nome" value="{{$piscicultura->nome}}"/>
-		<input type="submit" value="Remover" />
+		<input type="hidden" name="id" value="{{$piscicultura->id}}"/>
+		<div class="form-group">
+			<label>Nome da Piscultura</label><br>	
+			<input type='form-group' disabled="disabled" name="nome" value="{{$piscicultura->nome}}"/>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Remover" />
 	</form>
 @stop
+

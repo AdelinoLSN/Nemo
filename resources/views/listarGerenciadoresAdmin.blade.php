@@ -1,15 +1,37 @@
 @extends('layouts.principal')
-@section('title','Listar Gerenciadores')
+@section('title','Gerenciadores')
+@section('path')
+	Piscicultura {{$piscicultura->nome}} > Gerenciadores
+@stop
 @section('conteudo')
 	<ul>
-		<h4>Administrador</h4>
-		{{ $admin->name }}
-		<h4>Gerenciadores</h4>
-		@foreach ($gerenciadores as $gerenciador)
-			<li>Nome: {{ $gerenciador->name }} @ <a href="/remover/gerenciador/{{$gerenciador->id}}/piscicultura/{{$piscicultura_id}}">Remover</li>
-		@endforeach
+	
+		<table class="table">
+				<tr>
+					<th>Administrador</th>
+				</tr>
+				<tr>
+					<td>{{ $admin->name }}</td>					
+				</tr>
+			</table>
+		
+			<table class="table">
+				<tr>
+					<th>Gerenciadores</th>
+					<th>Ação</th>
+				</tr>
+				@foreach ($gerenciadores as $gerenciador)
+				<tr>
+					<td>{{ $gerenciador->name }}</td>
+					<td><a class="btn btn-danger"  href="/remover/gerenciador/{{$gerenciador->id}}/piscicultura/{{$piscicultura_id}}">Remover</td>
+				</tr>
+				@endforeach
+			</table>
+		
+		
 		<br>
 		<br>
-		<a href="/adicionar/gerenciador/piscicultura/{{$piscicultura_id}}">Adicionar</a>
+		<a class="btn btn-primary" href="/adicionar/gerenciador/piscicultura/{{$piscicultura_id}}">Adicionar novo gerenciador</a>
 	</ul>	
 @stop
+

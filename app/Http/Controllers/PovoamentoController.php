@@ -9,7 +9,11 @@ class PovoamentoController extends Controller
 	
 	 public function povoarTanque($tanque_id, $especie_id)
   {
-    return view("povoarTanque", ['tanque_id' => $tanque_id,'especie_id'=> $especie_id]);
+  	$especiePeixe= \nemo\EspeciePeixe::find($especie_id); 
+	$tanque = \nemo\Tanque::find($tanque_id);
+  	$idPiscultura = $tanque->piscicultura_id;
+   $piscicultura = \nemo\Piscicultura::find($idPiscultura); 
+    return view("povoarTanque", ['tanque_id' => $tanque_id,'especie_id'=> $especie_id,'especiePeixe' => $especiePeixe, 'piscicultura' => $piscicultura]);
   }
     public function inserirPeixe(Request $request){
     	$tanque = \nemo\Tanque::find($request->id_tanque);
@@ -27,6 +31,10 @@ class PovoamentoController extends Controller
         return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
     }
     public function listar ($id) {
+    		$tanque = \nemo\Tanque::find($id);
+    		$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura);
+    		
 			$povoamentos = \nemo\Povoamento::where('tanque_id','=',$id)->get();
 
 			$povoamentosDic = array();
@@ -49,7 +57,7 @@ class PovoamentoController extends Controller
 
 			
 			
-    		return view('infoTanque', ['povoamentos' => $povoamentosDic]);
+    		return view('infoTanque', ['povoamentos' => $povoamentosDic,'tanque' => $tanque,'piscicultura' => $piscicultura]);
     		   	
     }
 }

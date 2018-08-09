@@ -9,8 +9,10 @@ class EspecieController extends Controller
 {
     public function listar ($id) {
 			$tanque = \nemo\Tanque::find($id);
+			$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura);
     		$especiesPeixe= \nemo\EspeciePeixe::where('piscicultura_id','=',$tanque->piscicultura_id)->get();
-    		return view('listarEspecie', ['listaEspecies' => $especiesPeixe, 'piscicultura_id' => $id,'id'=> $id]);
+    		return view('listarEspecie', ['listaEspecies' => $especiesPeixe, 'piscicultura_id' => $id,'id'=> $id,'piscicultura' => $piscicultura,'tanque' => $tanque]);
     		   	
     }
    
@@ -43,13 +45,18 @@ class EspecieController extends Controller
     }
     
     public function editar($tanque_id, $id) {
-			$especiePeixe= \nemo\EspeciePeixe::find($id);   
-    		return view("editarEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id]);
+			$especiePeixe= \nemo\EspeciePeixe::find($id); 
+			$tanque = \nemo\Tanque::find($tanque_id);
+    		$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura);  
+    		return view("editarEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id,'piscicultura' => $piscicultura]);
     }
     
     public function salvar(Request $request){
 	  	$especiePeixe = \nemo\EspeciePeixe::find($request->especie_id);
 	  	$tanque = \nemo\Tanque::find($request->tanque_id);
+	  	$idPiscultura = $tanque->piscicultura_id;
+    	$piscicultura = \nemo\Piscicultura::find($idPiscultura);
 	  	if(($request->nome)==$especiePeixe->nome) {
 	  		$especiePeixe->nome = $request->nome;
     		$especiePeixe->tempo_desenvolvimento = $request->tempo_desenvolvimento;
@@ -64,15 +71,28 @@ class EspecieController extends Controller
     		$especiePeixe->tipo_racao = $request->tipo_racao;
     		$especiePeixe->temperatura_ideal_agua = $request->temperatura_ideal_agua;
     		$especiePeixe->update();
-    		return redirect()->route("listarEspecies", ['id' => $request->tanque_id]);
+    		return view('informarEspecie', [
+			'piscicultura' => $piscicultura,
+			'tanque' => $tanque,
+			'EspeciePeixe' => $especiePeixe,
+			
+		]);
    	}
    	
-   	return redirect()->route("listarEspecies", ['id' => $request->tanque_id]);
+   	return view('informarEspecie', [
+			'piscicultura' => $piscicultura,
+			'tanque' => $tanque,
+			'EspeciePeixe' => $especiePeixe,
+			
+		]);
     }
     
     public function remover($tanque_id, $id){
-  		$especiePeixe = \nemo\EspeciePeixe::find($id);
-    	return view("/removerEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id]);
+  		$especiePeixe= \nemo\EspeciePeixe::find($id); 
+			$tanque = \nemo\Tanque::find($tanque_id);
+    		$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura);  
+    		return view("removerEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $id,'tanque_id' => $tanque_id,'piscicultura' => $piscicultura]);
 	}
 	
 	 public function apagar(Request $request){
@@ -90,5 +110,19 @@ class EspecieController extends Controller
 	public function veriPisciculturaExistente($id){
 		$piscicultura = \nemo\Piscicultura::where('id','=',$id)->first();
 		return empty($piscicultura);
+	}
+	
+	public function informar($tanque_id,$especie_id){
+			$tanque = \nemo\Tanque::find($tanque_id);
+    		$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura);
+    		$especiePeixe = \nemo\EspeciePeixe::find($especie_id);
+
+		return view('informarEspecie', [
+			'piscicultura' => $piscicultura,
+			'tanque' => $tanque,
+			'EspeciePeixe' => $especiePeixe,
+			
+		]);
 	}
 }
