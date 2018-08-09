@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title','Adicionar Gerenciador')
 @section('path')
-	Piscicultura: <b>{{$piscicultura->nome}}</b> > Adicionar Gerenciador</h2>
+	<a href="/listar/pisciculturas">Pisciculturas</a> > <a href="/info/piscicultura/{{$piscicultura->id}}"> {{$piscicultura->nome}} </a> > Adicionar Gerenciador
 @stop
 @section('conteudo')
   <form action="/inserirGerenciador" method="post">

@@ -1,7 +1,7 @@
 <body>
     <hr>
     <section class="content">
-        <h2>@yield('path')</h2>
+        <h4>@yield('path')</h4>
     </section>
     <hr>
     <section class="content">

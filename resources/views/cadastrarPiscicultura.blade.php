@@ -17,7 +17,7 @@
 	</div>
 	<div class="form-group">
 		<label>Nome da piscicultura</lable>
-		<input type="text" class="form-control" name="nome" placeholder="Peixes Felizes" value="{{old('nome')}}" />
+		<input type="text" class="form-control" name="nome" placeholder="Peixes Felizes" value="{{old('nome')}}" autofocus />
 	</div>
 	<button type="submit" class="btn btn-primary">Criar</button>		
 </form>

@@ -10,7 +10,7 @@
     <input type="hidden" name="id_tanque" value="{{ $tanque->id}}" />
     <div class="form-group">
       <label>PH</label>
-      <input class="form-control" type="number" name="ph"required="required"/>
+      <input class="form-control" type="number" step="any" name="ph"required="required"/>
     </div>
     <input class="btn btn-success" type="submit" value="Cadastrar" />
   </form>
