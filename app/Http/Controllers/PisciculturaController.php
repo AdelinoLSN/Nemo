@@ -46,14 +46,14 @@ class PisciculturaController extends Controller
 
     public function adicionar(Request $request){
 		
-		$validator = Validator::make($request->all(),[
+		/*$validator = Validator::make($request->all(),[
 			'nome' => 'required|unique:pisciculturas',],
 			['required' => 'O campo :attribute é obrigatório',
 			'unique' => 'O :attribute já está em uso'
 			])
 			->validate();
 
-		dd(NULL);
+		dd(NULL);*/
 
 		if($this->verificaNomeExistente($request->nome)) {
 			$piscicultura = \nemo\Piscicultura::create([
