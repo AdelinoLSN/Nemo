@@ -23,4 +23,8 @@ class Tanque extends Model
     public function povoamentos(){
         return $this->hasMany(Povoamento::class);
     }
+    
+    public function pescas(){
+        return $this->hasMany(Pesca::class);
+    }
 }

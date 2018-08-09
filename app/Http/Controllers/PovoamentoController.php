@@ -49,11 +49,7 @@ class PovoamentoController extends Controller
 				}
 			}
 			
-			//dd(array_keys($povoamentosDic));
 			
-			foreach ($povoamentosDic as &$povoamento) {
-				//dd(key($povoamento));			
-			}
 
 			
 			
