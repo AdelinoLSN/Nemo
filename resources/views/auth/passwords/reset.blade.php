@@ -1,6 +1,36 @@
-@extends('layouts.app')
+@extends('layouts.principal')
+@section('title','Redefinição de senha')
+@section('path')
+    Redefinição de senha
+@stop
+@section('conteudo')
 
-@section('content')
+<div class="container">
+    <div class="card">
+        <div class="card-header">Redefinição de senha</div>
+        <div class="card-body">
+            <form action="{{ route('password.request') }}" method="POST">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" name="email" class="form-control" autofocus />
+                </div>
+                <div class="form-group">
+                    <label>Nova senha</label>
+                    <input type="password" name="password" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Confirme sua nova senha</label>
+                    <input type="password" name="password_confirmation" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Redefinir senha</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!----->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -62,4 +92,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection
