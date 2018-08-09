@@ -11,7 +11,7 @@
     	<input type="hidden" name="tanque_id" value="{{ $tanque_id}}" />
 		<div class="form-group">
 			<label>Especie</label><br>	
-			<input type="text" disabled="disabled" name="nome" value="{{$especiePeixe->nome}}"/>
+			<input class="form-control" type="text" disabled="disabled" name="nome" value="{{$especiePeixe->nome}}"/>
 		</div>
 		<input type="submit" class="btn btn-danger" value="Remover" />
 	</form>

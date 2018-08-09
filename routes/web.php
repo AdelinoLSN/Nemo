@@ -73,4 +73,9 @@ Route::get('/povoar/tanque/{tanque_id}/especie/{especie_id}',  "PovoamentoContro
 Route::post('/inserirPeixe', "PovoamentoController@inserirPeixe");
 Route::get('/info/tanque/{id}', "PovoamentoController@listar")->name('infoTanque');
 
+//Rotas de Pesca
+Route::get('/tanque/{tanque_id}/pesca/especie/{especiePeixe_id}/povoamento/{povoamento_id}', "PescaController@pesca");
+Route::post('/pescarEspecie', "PescaController@pescar");
+
+
 

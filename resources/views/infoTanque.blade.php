@@ -11,7 +11,8 @@
 			<tr>
 				<th>Espécie</th>
 				<th>Quantidade</th>
-				<th>Data de inserção</th>			
+				<th>Data de inserção</th>
+				<th>Ações</th>				
 			</tr>
 						
 			<?php
@@ -24,6 +25,7 @@
 				<td>{{$key}}</td>
 				<td>{{$povoamento->quantidade}}</td>	
 				<td>{{$povoamento->data}}</td>
+				<td><a class="btn btn-primary" href="/tanque/{{$tanque->id}}/pesca/especie/{{$povoamento->especie_id}}/povoamento/{{$povoamento->id}}">Realizar pesca</a></td>
 					
 			</tr>
 			@endforeach
@@ -48,6 +50,37 @@
 			</tr>
 			@endforeach
 			
-		</table>		
+		</table>	
+		
 	</div>
+	
+	<div>
+		</table>
+		<table class="table">
+			<tr>
+				<th>Pesca</th>
+				<th>Data da pesca</th>
+				<th>Quantidade</th>
+				<th>Peso</th>
+							
+			</tr>						
+			@foreach ($tanque->pescas as $pesca)
+			<?php
+				$especiePeixe= \nemo\EspeciePeixe::find($pesca->especie_id);
+			?>		
+			<tr>
+				<td>{{$especiePeixe->nome}}</td>
+				<td>{{$pesca->data}}</td>
+				<td>{{$pesca->quantidade}}</td>
+				<td>{{$pesca->peso}}</td>	
+				
+					
+			</tr>
+			@endforeach
+			
+		</table>	
+		
+	</div>
+	
+	
 @stop
