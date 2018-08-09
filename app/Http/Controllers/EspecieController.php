@@ -17,7 +17,10 @@ class EspecieController extends Controller
     }
    
     public function adicionar($id) {
-			return view("cadastrarEspecie", ['id' => $id]);    
+    		$tanque = \nemo\Tanque::find($id);
+    		$idPiscultura = $tanque->piscicultura_id;
+    		$piscicultura = \nemo\Piscicultura::find($idPiscultura); 
+			return view("cadastrarEspecie", ['id' => $id,'piscicultura' => $piscicultura, 'tanque' => $tanque]);    
     }
     
     public function cadastrar(Request $request){
