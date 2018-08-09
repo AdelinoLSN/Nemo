@@ -4,6 +4,7 @@ namespace nemo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use nemo\Validator\PisciculturaValidator;
 
 class PisciculturaController extends Controller
 {
@@ -45,16 +46,28 @@ class PisciculturaController extends Controller
     }
 
     public function adicionar(Request $request){
-		
-		/*$validator = Validator::make($request->all(),[
-			'nome' => 'required|unique:pisciculturas',],
-			['required' => 'O campo :attribute é obrigatório',
-			'unique' => 'O :attribute já está em uso'
-			])
-			->validate();
 
-		dd(NULL);*/
+		try {
 
+			PisciculturaValidator::validate($request->all());
+
+			$piscicultura = \nemo\Piscicultura::create($request->all());
+
+			$gerenciar = \nemo\Gerenciar::create([
+				'user_id' => (int) \Auth::user()->id,
+				'piscicultura_id' => $piscicultura->id,
+			]);
+
+			return redirect("/listar/pisciculturas");
+
+		}catch(\nemo\Validator\ValidationException $e){
+
+			return back()->withErrors($e->getValidator())->withInput();
+			
+		}
+
+
+/*
 		if($this->verificaNomeExistente($request->nome)) {
 			$piscicultura = \nemo\Piscicultura::create([
 				'nome' => $request->nome,
@@ -69,7 +82,7 @@ class PisciculturaController extends Controller
 		}
 
 		return redirect("/listar/pisciculturas");
-
+*/
     }
 
     public function editar($id){

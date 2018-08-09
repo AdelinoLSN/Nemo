@@ -7,14 +7,21 @@
 <div class="container" width="50%">
     <div class="card">
         <div class="card-header">
-            Login
+            Entrar
         </div>
         <div class="card-body">
+            @if (isset($errors) && count($errors) > 0)
+                <div class="alert alert-danger" role="alert">
+                    @foreach($errors->getMessages() as &$error)
+                    {{$error[0]}}
+                    @endforeach
+                </div>
+            @endif
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>E-mail</label>
-                    <input class="form-control" type="email" name="email" autofocus/>
+                    <input class="form-control" type="text" name="email" value="{{old('email')}}" autofocus/>
                 </div>
                 <div class="form-group">
                     <label>Senha</label>
