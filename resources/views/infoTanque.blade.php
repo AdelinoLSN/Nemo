@@ -28,7 +28,26 @@
 			</tr>
 			@endforeach
 			@endforeach
+				
+	</div>
+	<div>
+	<div>
+		</table>
+		<table class="table">
+			<tr>
+				<th>PH</th>
+				<th>Data de inserção</th>
+							
+			</tr>						
+			@foreach ($tanque->qualidade_aguas as $qualidade)		
+			<tr>
+				<td>{{$qualidade->ph}}</td>
+				<td>{{$qualidade->data}}</td>	
+				
+					
+			</tr>
+			@endforeach
+			
 		</table>		
-		
 	</div>
 @stop

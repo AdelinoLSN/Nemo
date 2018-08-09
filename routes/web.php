@@ -60,9 +60,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Rotas de Qualidade Água
-Route::get('/cadastrar/qualidadeAgua', "QualidadeAguaController@cadastrar");
+Route::get('/tanque/{id}/cadastrar/qualidadeAgua', "QualidadeAguaController@cadastrar");
 Route::post('/adicionarQualidadeAgua', "QualidadeAguaController@adicionar");
-Route::get('/listar/qualidadesAgua', "QualidadeAguaController@listar");
+Route::get('/tanque/{id}/listar/qualidadesAgua', "QualidadeAguaController@listar")->name('listarQualidades');
 Route::get('/editar/qualidadeAgua/{id}', "QualidadeAguaController@editar");
 Route::post('/salvarQualidadeAgua', "QualidadeAguaController@salvar");
 Route::post('/apagarQualidadeAgua', "QualidadeAguaController@apagar");

@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 class QualidadeAguaController extends Controller
 {
-    public function cadastrar(Request $request)
-  {
-    return view("cadastrarQualidadeAgua");
+    public function cadastrar($tanque_id){
+    	$tanque = \nemo\Tanque::find($tanque_id);
+    	$idPiscultura = $tanque->piscicultura_id;
+    	$piscicultura = \nemo\Piscicultura::find($idPiscultura);
+    	  	
+    	return view("cadastrarQualidadeAgua",['tanque_id'=>$tanque_id,'tanque' => $tanque,'piscicultura' => $piscicultura]);
   }
 
   public function adicionar(Request $request){
@@ -23,16 +26,10 @@ class QualidadeAguaController extends Controller
         'ph' => $request->ph,
         'data' => $data,
       ]);
-
-      /*$qualidadeAgua = new \nemo\QualidadeAgua();
-      $qualidadeAgua->ph = $request->ph;
-      $qualidadeAgua->data = $data;
-      $qualidadeAgua->id_tanque = $request->id_tanque;
-      $qualidadeAgua->save();*/
-
-      return redirect("/listar/qualidadesAgua");
+      
+       return redirect()->route("listarTanques", ['id' => $request->id_tanque]);
     }
-    return redirect("/listar/qualidadesAgua");
+    return redirect()->route("listarTanques", ['id' => $request->id_tanque]);
   }
   
   public function verificaTanqueExistente($id){
@@ -40,9 +37,10 @@ class QualidadeAguaController extends Controller
     return empty($tanque);
   }
   
- 	public function listar () {
+ 	public function listar ($id) {
 			$qualidadeAgua= \nemo\QualidadeAgua::all();
-			return view("listarQualidadeAgua", ['listaQualidadesAgua' => $qualidadeAgua]);    	
+			$tanque= \nemo\Tanque::find($id);
+			return view("listarQualidadeAgua", ['listaQualidadesAgua' => $qualidadeAgua,'id'=>$id]);    	
     }
     
     public function editar($id) {
