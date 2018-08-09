@@ -1,18 +1,17 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-            <title>Cadastro de Qualidade de água</title>
-
-    </head>
-    <body>
-    	<h1>Cadastrar Qualidade de água<h1>
-    	
-    	<form action="/adicionarQualidadeAgua" method="post"> 
-    		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-    			PH: <input type="number" name="ph"required="required"><br/>
-   			ID do Tanque:<input type="integer" name="id_tanque"required="required"><br/>
-    			<input  type="submit" value="cadastrar" />
-    	</form>
- 
-    </body>
-</html>
+@extends('layouts.principal')
+@section('title','Cadastrar PH')
+@section('path')
+	Piscicultura: {{$piscicultura->nome}} > Tanque {{$tanque->id}} > Adicionar PH
+@stop
+@section('conteudo')
+  <form action="/adicionarQualidadeAgua" method="post">
+    {{ csrf_field() }}
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+    <input type="hidden" name="id_tanque" value="{{ $tanque->id}}" />
+    <div class="form-group">
+      <label>PH</label>
+      <input class="form-control" type="number" name="ph"required="required"/>
+    </div>
+    <input class="btn btn-success" type="submit" value="Cadastrar" />
+  </form>
+@stop

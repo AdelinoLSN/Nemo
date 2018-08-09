@@ -28,6 +28,7 @@
 					<a class="btn btn-primary" href="/editar/tanque/{{$tanque->id}}">Editar</a>
         			<a class="btn btn-primary" href="/remover/tanque/{{$tanque->id}}">Remover</a>
         			<a class="btn btn-primary" href="/listar/especies/{{$tanque->id}}">Povoar</a>
+        			<a class="btn btn-primary" href="/tanque/{{$tanque->id}}/cadastrar/qualidadeAgua">Adicionar PH da água</a>
         			<a class="btn btn-primary" href="/info/tanque/{{$tanque->id}}">Info</a>
 				</td>
 			</tr>

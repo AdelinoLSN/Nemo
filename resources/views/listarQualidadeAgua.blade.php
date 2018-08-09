@@ -12,6 +12,6 @@
     	<br/>
     @endforeach
  
- 		<a href="/cadastrar/qualidadeAgua">Novo</a>
+ 		<a href="/tanque/{{$id}}/cadastrar/qualidadeAgua">Novo</a>
     </body>
 </html>
