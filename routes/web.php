@@ -57,7 +57,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 //Rotas de Sistema
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PisciculturaController@listar')->name('home');
 
 //Rotas de Qualidade Água
 Route::get('/tanque/{id}/cadastrar/qualidadeAgua', "QualidadeAguaController@cadastrar");

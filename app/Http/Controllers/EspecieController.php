@@ -24,6 +24,16 @@ class EspecieController extends Controller
     }
     
     public function cadastrar(Request $request){
+		$validator = Validator::make($request->all(),[
+			'nome' => 'required',
+			'tempo_desenvolvimento' => 'required'],
+			['required' => 'O campo :attribute é obrigatório',
+			'unique' => 'O :attribute já está em uso'
+			])
+			->validate();
+
+		dd(NULL);
+
     	$tanque = \nemo\Tanque::find($request->tanque_id);
     	if($this->verificaNomeExistente($request->nome)) {
     		if(!$this->veriPisciculturaExistente($tanque->piscicultura_id)) {   			
@@ -56,6 +66,8 @@ class EspecieController extends Controller
     }
     
     public function salvar(Request $request){
+		
+
 	  	$especiePeixe = \nemo\EspeciePeixe::find($request->especie_id);
 	  	$tanque = \nemo\Tanque::find($request->tanque_id);
 	  	$idPiscultura = $tanque->piscicultura_id;

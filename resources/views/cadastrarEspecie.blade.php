@@ -4,8 +4,7 @@
 @section('path')
 	Piscultura {{$piscicultura->nome}} > Tanque {{$tanque->id}} > Povoar > Especies > Cadastrar nova especie
 @stop
-@section('conteudo')
-	
+@section('conteudo')	
 	<form action="/cadastrarEspecie" method="post">
 		{{ csrf_field() }}
 		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
