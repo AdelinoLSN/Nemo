@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class GerenciarController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function listarGerenciadores($id){
 		$gerenciars = \nemo\Gerenciar::where('piscicultura_id','=',$id)->get();
 		$piscicultura = \nemo\Piscicultura::find($id);

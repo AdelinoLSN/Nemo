@@ -1,8 +1,8 @@
 <!doctype html>
 @extends('layouts.principal')
-@section('title','Editar Especie')
+@section('title','Remover Piscicultura')
 @section('path')
-	Piscultura {{$piscicultura->nome}} > Remover
+<a href="/listar/pisciculturas">Pisciculturas</a> > <a href="/info/piscicultura/{{$piscicultura->id}}"> {{$piscicultura->nome}} </a> > Remover Piscicultura	
 @stop
 @section('conteudo')
 	<form action="/apagarPiscicultura" method="post" >

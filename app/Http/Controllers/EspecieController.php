@@ -7,6 +7,10 @@ use Validator;
 
 class EspecieController extends Controller
 {
+	public function __construct(){
+		$this->middleware('auth');
+  	}
+
     public function listar ($id) {
 			$tanque = \nemo\Tanque::find($id);
 			$idPiscultura = $tanque->piscicultura_id;

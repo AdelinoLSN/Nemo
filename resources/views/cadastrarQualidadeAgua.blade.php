@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title','Cadastrar PH')
 @section('path')
-	Piscicultura: {{$piscicultura->nome}} > Tanque {{$tanque->id}} > Adicionar PH
+<a href="/listar/pisciculturas">Pisciculturas</a> > <a href="/info/piscicultura/{{$piscicultura->id}}"> {{$piscicultura->nome}} </a> > <a href="/listar/tanques/{{$tanque->id}}">Tanques</a> > Cadastrar PH da água	
 @stop
 @section('conteudo')
   <form action="/adicionarQualidadeAgua" method="post">
@@ -10,7 +10,7 @@
     <input type="hidden" name="id_tanque" value="{{ $tanque->id}}" />
     <div class="form-group">
       <label>PH</label>
-      <input class="form-control" type="number" step="any" name="ph"required="required"/>
+      <input class="form-control" type="number" name="ph" min="0" max="14" required/>
     </div>
     <input class="btn btn-success" type="submit" value="Cadastrar" />
   </form>

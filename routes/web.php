@@ -77,5 +77,8 @@ Route::get('/info/tanque/{id}', "PovoamentoController@listar")->name('infoTanque
 Route::get('/tanque/{tanque_id}/pesca/especie/{especiePeixe_id}/povoamento/{povoamento_id}', "PescaController@pesca");
 Route::post('/pescarEspecie', "PescaController@pescar");
 
+//Rotas de Escalonamento
+Route::get('/escalonamento/{id}', "EscalonamentoController@chamaEscalonamento");
+Route::post('/calcularEscalonamento', "EscalonamentoController@calcularEscalonamento");
 
 
