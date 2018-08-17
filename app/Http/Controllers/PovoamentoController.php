@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class PovoamentoController extends Controller
 {
+
+	public function __construct(){
+		$this->middleware('auth');
+  	}
 	
 	 public function povoarTanque($tanque_id, $especie_id)
   {
@@ -13,22 +17,29 @@ class PovoamentoController extends Controller
 	$tanque = \nemo\Tanque::find($tanque_id);
   	$idPiscultura = $tanque->piscicultura_id;
    $piscicultura = \nemo\Piscicultura::find($idPiscultura); 
-    return view("povoarTanque", ['tanque_id' => $tanque_id,'especie_id'=> $especie_id,'especiePeixe' => $especiePeixe, 'piscicultura' => $piscicultura]);
+    return view("povoarTanque", ['tanque' => $tanque, 'especiePeixe' => $especiePeixe, 'piscicultura' => $piscicultura]);
   }
     public function inserirPeixe(Request $request){
-    	$tanque = \nemo\Tanque::find($request->id_tanque);
-    	//dd($tanque);
-    	date_default_timezone_set('America/Sao_Paulo');
-      $data = date('d-m-Y');
-    	$data .= ' '.date('H:i:s');
-        $povoamento = \nemo\Povoamento::create([
+		$tanque = \nemo\Tanque::find($request->id_tanque);			
+		$especie = \nemo\EspeciePeixe::find($request->id_especie);
+		$quantidadeAtual = $request->quantidade/$tanque->volume;
+		if($request->warning == "1" || $quantidadeAtual <= $especie->quantidade_por_volume){
+    		date_default_timezone_set('America/Sao_Paulo');
+      		$data = date('d-m-Y');
+    		$data .= ' '.date('H:i:s');
+        	$povoamento = \nemo\Povoamento::create([
 				'tanque_id' => $request->id_tanque,       
 				'especie_id' => $request->id_especie,
 				'data' => $data,
 				'quantidade' => $request->quantidade,
 				       
-        ]);
-        return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
+        	]);
+        	return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
+    	
+		}else{
+			return back()->withErrors(array('message' => 'Quantidade inserida maior do que a capacidade do tanque. Se deseja realizar o povoamento mesmo assim insira novamente.'));
+		}
+		
     }
     public function listar ($id) {
     		$tanque = \nemo\Tanque::find($id);

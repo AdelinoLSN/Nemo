@@ -64,6 +64,18 @@
                 </label>
                 @endif
             </div>
+            <div class="col-sm">
+                <a class="btn btn-primary" href="/escalonamento/{{$piscicultura->id}}">Escalonamento de Produção</a>
+                <br>
+                <label>
+                    Calcule um escalonamento para sua produção.
+                </label>
+            </div>
+            <div class="col-sm">
+                <!--
+                    Coluna criada apenas para organização de layout
+                -->
+            </div>
         </div>
     </div>
 

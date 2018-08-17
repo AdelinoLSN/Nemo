@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class QualidadeAguaController extends Controller
 {
+
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
     public function cadastrar($tanque_id){
     	$tanque = \nemo\Tanque::find($tanque_id);
     	$idPiscultura = $tanque->piscicultura_id;

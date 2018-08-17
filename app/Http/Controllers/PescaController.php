@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 
 class PescaController extends Controller
 {
+
+	public function __construct(){
+		$this->middleware('auth');
+  	}
+
     public function pesca($tanque_id, $especiePeixe_id,$povoamento_id){
   			$especiePeixe= \nemo\EspeciePeixe::find($especiePeixe_id); 
   			$povoamento= \nemo\Povoamento::find($povoamento_id);
 			$tanque = \nemo\Tanque::find($tanque_id);
     		$idPiscultura = $tanque->piscicultura_id;
     		$piscicultura = \nemo\Piscicultura::find($idPiscultura);  
-    		return view("pescarEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $especiePeixe_id,'tanque_id' => $tanque_id,'piscicultura' => $piscicultura,'povoamento_id' => $povoamento->id]);
+    		return view("pescarEspecie", ['especiePeixe' => $especiePeixe, 'especie_id' => $especiePeixe_id,'tanque'=>$tanque,'tanque_id' => $tanque_id,'piscicultura' => $piscicultura,'povoamento_id' => $povoamento->id]);
 	}
 	
 	
