@@ -16,6 +16,13 @@ class CreateQualidadeAguasTable extends Migration
         Schema::create('qualidade_aguas', function (Blueprint $table) {
         	$table->increments('id');
             $table->float('ph')->unsigned();
+            $table->float('nivelOxigenio')->unsigned();
+            $table->float('temperatura');
+            $table->float('nivelAmonia');
+            $table->float('nitrito');
+            $table->float('nitrato');
+            $table->float('alcalinidade');
+            $table->float('dureza');
             $table->dateTime('data');
       		$table->integer("tanque_id")->unsigned();
             $table->timestamps();

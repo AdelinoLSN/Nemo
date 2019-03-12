@@ -21,20 +21,27 @@ class QualidadeAguaController extends Controller
 
   public function adicionar(Request $request){
     if(!$this->verificaTanqueExistente($request->id_tanque)) {
-    	date_default_timezone_set('America/Sao_Paulo');
+      date_default_timezone_set('America/Sao_Paulo');
       $data = date('d-m-Y');
-    	$data .= ' '.date('H:i:s');
-
+      $data .= ' '.date('H:i:s');
       $tanque = \nemo\Tanque::find($request->id_tanque);
-
-      $tanque->qualidade_aguas()->create([
-        'ph' => $request->ph,
-        'data' => $data,
-      ]);
+      //dd($request->nivelOxigenio();
+      $qualidade = new \nemo\QualidadeAgua();
+      $qualidade->ph = $request->ph;
+      $qualidade->nivelOxigenio = $request->nivelOxigenio;
+      $qualidade->temperatura = $request->temperatura;
+      $qualidade->nivelAmonia = $request->nivelAmonia;
+      $qualidade->nitrito = $request->nitrato;
+      $qualidade->nitrato = $request->nitrato;
+      $qualidade->alcalinidade = $request->alcalinidade;
+      $qualidade->dureza = $request->dureza;
+      $qualidade->data = $data;
+      $qualidade->tanque_id = $tanque->id;
+      $qualidade->save();
       
-       return redirect()->route("listarTanques", ['id' => $request->id_tanque]);
+       return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
     }
-    return redirect()->route("listarTanques", ['id' => $request->id_tanque]);
+    return redirect()->route("listarTanques", ['id' => $tanque->piscicultura_id]);
   }
   
   public function verificaTanqueExistente($id){
