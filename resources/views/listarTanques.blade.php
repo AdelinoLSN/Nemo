@@ -26,7 +26,7 @@
 				<td>{{$tanque->manutencao_necessaria}}</td>
 				<td>
         			<a class="btn btn-primary" href="/info/tanque/{{$tanque->id}}">Info</a>
-        			<a class="btn btn-primary" href="/tanque/{{$tanque->id}}/cadastrar/qualidadeAgua">Adicionar PH da água</a>
+        			<a class="btn btn-primary" href="/tanque/{{$tanque->id}}/cadastrar/qualidadeAgua">Parâmetros da Água</a>
         			<a class="btn btn-primary" href="/listar/especies/{{$tanque->id}}">Povoar</a>
 					<a class="btn btn-warning" href="/editar/tanque/{{$tanque->id}}">Editar</a>
         			<a class="btn btn-danger" href="/remover/tanque/{{$tanque->id}}">Remover</a>
